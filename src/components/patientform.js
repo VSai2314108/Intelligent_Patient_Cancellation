@@ -22,6 +22,13 @@ function PatientForm() {
                     </Form.Select>
                 </FormGroup>
                 <FormGroup>
+                    <Form.Label>Alcholic</Form.Label>
+                    <Form.Select>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select>
+                </FormGroup>
+                <FormGroup>
                     <Form.Label>Diabetes</Form.Label>
                     <Form.Select>
                         <option value="0">No</option>
