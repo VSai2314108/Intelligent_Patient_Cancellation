@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 function Header() {
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/">Picking Your Appointment!!</Navbar.Brand>
+            <Navbar.Brand href="/">Appointment Handler </Navbar.Brand>
             <Nav className="me-auto">
                 <Nav.Link href="/">Home Page</Nav.Link>
                 <Nav.Link href="info">About Our Software</Nav.Link>
