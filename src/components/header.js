@@ -8,7 +8,7 @@ function Header() {
             <Nav className="me-auto">
                 <Nav.Link href="/">Home Page</Nav.Link>
                 <Nav.Link href="info">About Our Software</Nav.Link>
-                <Nav.Link href="provider">Patien Cancellation Risk</Nav.Link>
+                <Nav.Link href="provider">Patient Cancellation Risk</Nav.Link>
                 <Nav.Link href="schedule">Schedule Analyzer</Nav.Link>
             </Nav>
         </Navbar>
