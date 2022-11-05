@@ -1,7 +1,8 @@
 import './App.css';
 import Header from './components/header';
-import PatientForm from './components/patientform';
+import ProviderForm from './components/providerform';
 import Home from './components/home';
+import Info from './components/info';
 import { BrowserRouter } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
 
@@ -12,7 +13,9 @@ function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/patient" element={<PatientForm />}></Route>
+          <Route path="/info" element={<Info />}></Route>
+          <Route path="/provider" element={<ProviderForm />}></Route>
+          <Route path="/schedule" element={<ProviderForm />}></Route>
         </Routes>
     </BrowserRouter>
     </div>

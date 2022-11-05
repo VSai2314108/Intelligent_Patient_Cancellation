@@ -2,7 +2,7 @@ import { Container, FormGroup } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Header from 'react-bootstrap/Navbar';
 
-function PatientForm() {
+function ProviderForm() {
     //Age, Gender, ScheudleDay-Time, AppointmentDay, Diabetes, Hypertesion, Welfare
 
     return (
@@ -18,7 +18,7 @@ function PatientForm() {
                     <Form.Select>
                         <option value="0">Male</option>
                         <option value="1">Female</option>
-                        <option value="1">Choose Not To Identify</option>
+                        <option value="1">Choose not to identify</option>
                     </Form.Select>
                 </FormGroup>
                 <FormGroup>
@@ -49,18 +49,9 @@ function PatientForm() {
                         <option value="1">Yes</option>
                     </Form.Select>
                 </FormGroup>
-                <FormGroup>
-                    <Form.Label>Schedule Date - Begin</Form.Label>
-                    <Form.Control type="date" placeholder="Enter Schedule Date - Begin" />
-                </FormGroup>
-                <FormGroup>
-                    <Form.Label>Schedule Date - End</Form.Label>
-                    <Form.Control type="date" placeholder="Enter Schedule Date - End" />
-                </FormGroup>
             </Form>
         </Container>
-        
     )
 }
 
-export default PatientForm;
+export default ProviderForm;
