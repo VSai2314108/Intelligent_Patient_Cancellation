@@ -155,13 +155,13 @@ function Schedule() {
                     data={showDict}>
                 </DataTable>
                 <br></br>
-                <h5>Not Likely to Show Patients with No SMS Sent</h5>
+                <h5>Not Likely to Show Patients: Send SMS</h5>
                 <DataTable
                     columns={headingDict}
                     data={noshownoDict}>
                 </DataTable>
                 <br></br>
-                <h5>Not Likely to Show Patients with SMS Sent</h5>
+                <h5>Not Likely to Show Patients regardless of SMS</h5>
                 <DataTable
                     columns={headingDict}
                     data={noshowyesDict}>
