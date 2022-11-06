@@ -99,7 +99,7 @@ function ProviderForm() {
                     Submit
                 </Button>
             </Form>
-            { blank ? <div></div> : out[0]==0 ? <h1>Likely to Show</h1> : <h1>Not Likely to Show</h1>}
+            { blank ? <div></div> : out[0]==0 ? <h2 class="result">Likely to Show</h2> : <h2 class = "result1">Not Likely to Show</h2>}
         </Container>
     )
 }
