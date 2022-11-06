@@ -36,7 +36,7 @@ def read_root():
 # Setting up prediction route
 @app.post("/predict")
 def predict(array: list):
-    array = np.asarray(array).astype('int32')
+    array = np.asarray(array).astype('float32')
     loaded_results = loaded_model.predict(array)
     loaded_results = np.asarray(loaded_results).astype('int32')
     return loaded_results.tolist()
