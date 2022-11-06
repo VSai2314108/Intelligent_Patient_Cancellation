@@ -1,5 +1,5 @@
 import logo from "./photo.jpeg"; // with import
-
+import "./css/home.css"
 function Home() {
     return(
         <div>
