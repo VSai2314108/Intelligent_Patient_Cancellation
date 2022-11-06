@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Header from 'react-bootstrap/Navbar';
 import { useState } from 'react';
+import "./css/providerform.css" 
 
 function ProviderForm() {
     //Age, Gender, ScheudleDay-Time, AppointmentDay, Diabetes, Hypertesion, Welfare, Handicap, SMS
@@ -33,7 +34,7 @@ function ProviderForm() {
     if (blank) {
         return (
             <Container>
-                <Header >Patient Form</Header>
+                <h1 id = "header">Patient Form</h1>
                 <Form onSubmit={onFormSubmit}>
                     <FormGroup className="mb-3">
                         <Form.Label>Age</Form.Label>
@@ -94,7 +95,7 @@ function ProviderForm() {
                             <option value="1">Yes</option>
                         </Form.Select>
                     </FormGroup>
-                    <Button variant="primary" type="submit">
+                    <Button cssClass='butt' variant="primary" type="submit">
                         Submit
                     </Button>
                 </Form>

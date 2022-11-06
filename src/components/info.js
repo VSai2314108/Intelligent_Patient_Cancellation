@@ -14,7 +14,7 @@ function Info() {
                 efficacy of about 80%. We then discovered we had the wrong activiation function. We changed it from softmax to sigmoid which is the correct activiation
                 function for binary output. This raised the accuracy to 96%.</p>
                 
-                <img src={picture} height = "450" width = "600" alt="Logistic Regression" class ="center"/>
+                <center><img src={picture} height = "450" width = "600" alt="Logistic Regression" class ="center"/></center>
             
         </div>
     )
