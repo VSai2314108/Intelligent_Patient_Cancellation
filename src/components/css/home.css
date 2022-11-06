@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 p {
@@ -33,4 +34,10 @@ p {
     font-size: 20px;
     text-align: justify;
     padding-bottom: 40px;
+=======
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+>>>>>>> 7bbed5391c701061dc041066c8bf6d1e8309d65e
 }

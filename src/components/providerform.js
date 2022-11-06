@@ -31,6 +31,7 @@ function ProviderForm() {
             setOut(data);
         }).then(setBlank(false));
     }
+<<<<<<< HEAD
     if (blank) {
         return (
             <Container>
@@ -108,6 +109,78 @@ function ProviderForm() {
             <p> This Patient has a {out} </p>
         )
     }
+=======
+    return (
+        <Container>
+            { blank ? <div></div> : out[0]==0 ? <h1>Likely to Show</h1> : <h1>Not Likely to Show</h1>}
+            <Header >Patient Form</Header>
+            <Form onSubmit={onFormSubmit}>
+                <FormGroup className="mb-3">
+                    <Form.Label>Age</Form.Label>
+                    <Form.Control type="number" placeholder="Enter Age" defaultValue={50} />
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Form.Label>Gender</Form.Label>
+                    <Form.Select>
+                        <option value="0">Choose not to identify</option>
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </Form.Select>
+                </FormGroup >
+                <FormGroup className="mb-3">
+                    <Form.Label>Alcholic</Form.Label>
+                    <Form.Select>
+                        <option value="1">Choose not to answer</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select>
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Form.Label>Diabetes</Form.Label>
+                    <Form.Select>
+                        <option value="1">Choose not to answer</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select> 
+                </FormGroup >
+                <FormGroup className="mb-3">
+                    <Form.Label>Hypertension</Form.Label>
+                    <Form.Select>
+                        <option value="1">Choose not to answer</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select>
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Form.Label>Welfare</Form.Label>
+                    <Form.Select>
+                        <option value="1">Choose not to answer</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select>
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Form.Label>Handicap</Form.Label>
+                    <Form.Select>
+                        <option value="1">Choose not to answer</option>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select>
+                </FormGroup>
+                <FormGroup className="mb-3">
+                    <Form.Label>SMS Sent</Form.Label>
+                    <Form.Select>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </Form.Select>
+                </FormGroup>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </Container>
+    );
+>>>>>>> 7bbed5391c701061dc041066c8bf6d1e8309d65e
 }
 
 export default ProviderForm;

@@ -1,12 +1,11 @@
 import * as XLSX from 'xlsx';
-import DataTable from 'react-data-table-component';
 import { useState } from 'react';
 
 
 function Schedule() {
 
-    const [columns, setColumns] = useState([]);
-    const [data, setData] = useState([]);
+    const [blank, setBlank] = useState(true);
+    const [out, setOut] = useState([]);
 
 
     const handleFileUpload = e => {
@@ -29,11 +28,24 @@ function Schedule() {
           }
           out = out.filter((row) => row.length > 0);
           console.log(out);
+          invokeAPI(out)
         };
         reader.readAsBinaryString(file);
-      }
+    }
+    const invokeAPI = (input) => {
+        fetch("http://localhost:8080/predict", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(input)
+        }).then((response) => response.json())
+        .then((data) => {
+            console.log(data); 
+            setOut(data);
+        }).then(setBlank(false));
+    }
     
-      return (
+    if (blank) {
+    return (
         <div>
         <div className="resultsContainer">
             <h3>Upload Deposits through Excel</h3>
@@ -42,15 +54,14 @@ function Schedule() {
             accept=".csv,.xlsx,.xls"
             onChange={handleFileUpload}
             />
-            <DataTable
-            pagination
-            highlightOnHover
-            columns={columns}
-            data={data}
-            />
         </div>
-      </div>
-      )
-
+        </div>
+    );
+    }
+    else {
+    return (
+        <p> This Patient has a {out} </p>
+    );
+    }
 }
 export default Schedule;
