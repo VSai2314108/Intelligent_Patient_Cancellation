@@ -1,0 +1,10 @@
+
+Nav {
+    margin-left: 30px;
+}
+
+.nav-link:hover {
+    background-color: #1A2B6D;
+    color: white !important;
+    transition: 0.7s;
+}
