@@ -1,6 +1,10 @@
 import * as XLSX from 'xlsx';
 import { useState } from 'react';
-
+import React, {Component} from 'react';
+import {Container} from "react";
+import DataTable from 'react-data-table-component';
+import "./css/sheetupload.css" 
+import picture from './package-lock.png'
 
 function Schedule() {
 
@@ -41,8 +45,7 @@ function Schedule() {
             }
 
             whole = whole.filter((row) => row.length > 0);
-            console.log(out,whole);
-            invokeAPI(out,whole)
+            invokeAPI(out,whole);
         };
         reader.readAsBinaryString(file);
     }
@@ -56,10 +59,21 @@ function Schedule() {
             console.log(data); 
             // add the last element of the array to the same index of output
             for (let i = 0; i < data.length; i++) {
-                input[i] = [...input[i], data[i][0]];
+                whole[i] = [...whole[i], data[i][0]];
             }
-            console.log(input)
-            setOut(input)
+            // convert first element to str in whole
+            for (let i = 0; i < whole.length; i++) {
+                whole[i][4] = whole[i][4] == "1" ? "Male" : "Female";
+                whole[i][6] = whole[i][6] == "1" ? "Yes" : "No";
+                whole[i][7] = whole[i][7] == "1" ? "Yes" : "No";
+                whole[i][8] = whole[i][8] == "1" ? "Yes" : "No";
+                whole[i][9] = whole[i][9] == "1" ? "Yes" : "No";
+                whole[i][10] = whole[i][10] == "1" ? "Yes" : "No";
+                whole[i][11] = whole[i][11] == "1" ? "Yes" : "No";
+                whole[i][12] = whole[i][12] == "1" ? "No Show" : "Show";
+            }
+            console.log(whole)
+            setOut(whole)
         }).then(setBlank(false));
     }
     
@@ -67,20 +81,96 @@ function Schedule() {
         return (
             <div>
             <div className="resultsContainer">
-                <h3>Upload Patient Schedule</h3>
-                <input
+                <h3 id="title">Upload Patient Schedule</h3>
+              <center>
+              <input
                 type="file"
                 accept=".csv,.xlsx,.xls"
-                onChange={handleFileUpload}
+                onChange
+                ={handleFileUpload}
                 />
+              </center>
+                
+                <br></br>
+               <center><img src={picture} height = "200" width = "250" alt="Logistic Regression" class ="center"/></center>
+                
             </div>
             </div>
         );
     }
     else {
+    
+            // one xlxs table for arrays in out where the last element is show
+            // one xlxs table for arrays in out where the last element is no show and the second to last element is no
+            // one xlxs table for arrays in out where the last element is no show and the second to last element is yes
+            
+        var heading = [['Name','Number','Date','Time','Gender','Age','Welfare','Hypertension','Diabetes','Alcoholism','Handicap','SMS Received','Show/No Show']];
+
+        var noshow = out.filter((row) => row[12] == "No Show");
+
+        var show = out.filter((row) => row[12] == "Show");
+
+        var noshowyes = noshow.filter((row) => row[11] == "Yes");
+
+        var noshowno = noshow.filter((row) => row[11] == "No");
+
+        //convert show into dictionary using heading as keys
+        var showDict = show.map((row) => {
+            var dict = {};
+            for (let i = 0; i < row.length; i++) {
+                dict[heading[0][i]] = row[i];
+            }
+            return dict;
+        });
+
+        var noshownoDict = noshowno.map((row) => {
+            var dict = {};
+            for (let i = 0; i < row.length; i++) {
+                dict[heading[0][i]] = row[i];
+            }
+            return dict;
+        });
+
+        var noshowyesDict = noshowyes.map((row) => {
+            var dict = {};
+            for (let i = 0; i < row.length; i++) {
+                dict[heading[0][i]] = row[i];
+            }
+            return dict;
+        });
+
+        //conver heading into dictionary that fits the DataTable type
+        var headingDict = heading[0].map((row) => {
+            var dict = {};
+            dict['name'] = row;
+            dict['selector'] = row;
+            return dict;
+        });
+
         return (
-            <p> This Patient has a {out} </p>
+            <div>
+                <h5>Likely to Show Patients</h5>
+                <DataTable class = "show"
+                    columns={headingDict}
+                    data={showDict}>
+                </DataTable>
+                <br></br>
+                <h5>Not Likely to Show Patients with No SMS Sent</h5>
+                <DataTable
+                    columns={headingDict}
+                    data={noshownoDict}>
+                </DataTable>
+                <br></br>
+                <h5>Not Likely to Show Patients with SMS Sent</h5>
+                <DataTable
+                    columns={headingDict}
+                    data={noshowyesDict}>
+                </DataTable>
+            </div>
+            
         );
     }
 }
+
+
 export default Schedule;

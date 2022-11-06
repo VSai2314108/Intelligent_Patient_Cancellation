@@ -1,0 +1,18 @@
+h5{
+    text-align: center;
+    color: #1A2B6D;
+    text-decoration: underline;
+}
+
+h3{
+    color: #1A2B6D;
+    padding-bottom: 20px;
+    text-align: center;
+    font-size: 30px;
+    padding-top: 20px;
+}
+
+input[type=file] {
+    font-size: 50x;
+    align-items: center;
+}
