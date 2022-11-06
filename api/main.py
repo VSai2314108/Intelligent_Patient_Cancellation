@@ -1,9 +1,10 @@
 # Importing necessary libraries
 import uvicorn
-import pickle
 from pydantic import BaseModel
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import numpy as np
+import keras
 
 # Initializing the fast API server
 app = FastAPI()
@@ -25,50 +26,20 @@ app.add_middleware(
 )
 
 # Loading up the trained model
-# model = pickle.load(open('../model/hireable.pkl', 'rb'))
-
-# Defining the model input types
-class Appointment(BaseModel):
-    gender: int
-    age: float
-    welfare: int
-    hypertension: int
-    diabetes: int
-    alcholic: int
-    handicap: int
-    sms: int
+loaded_model = keras.models.load_model("../my_model")
 
 # Setting up the home route
 @app.get("/")
 def read_root():
     return {"data": "Welcome to the Patient No Show Prediction API"}
 
+# Setting up prediction route
 @app.post("/predict")
-def predict(data: list):
-    return data
-
-# Setting up the prediction route
-""" @app.post("/prediction/")
-async def get_predict(data: Appointment):
-    sample = [[
-        data.gender,
-        data.age,
-        data.welfare,
-        data.hypertension,
-        data.diabetes,
-        data.alcholic,
-        data.handicap,
-        data.sms
-    ]]
-
-    hired = model.predict(sample).tolist()[0]
-
-    return {
-        "data": {
-            'prediction': hired,
-            'interpretation': 'Candidate can be hired.' if hired == 1 else 'Candidate can not be hired.'
-        }
-    } """
+def predict(array: list):
+    array = np.asarray(array).astype('int32')
+    loaded_results = loaded_model.predict(array)
+    loaded_results = np.asarray(loaded_results).astype('int32')
+    return loaded_results.tolist()
 
 # Configuring the server host and port
 if __name__ == '__main__':
